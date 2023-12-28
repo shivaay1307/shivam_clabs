@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Navbar from "./components/navbar";
+import Popup from "./components/popup";
 
 function App() {
+  const [saveSegement, setSaveSegment] = useState(false);
+
+  function handleSaveSegment() {
+    setSaveSegment(!saveSegement);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Navbar icon="<" title="View Audience" />
+      <div className="screen">
+        <button className="saveButton" onClick={() => handleSaveSegment()}>
+          Save Segment
+        </button>
+        {saveSegement === true ? <Popup saveSegement={saveSegement} /> : ""}
+      </div>
     </div>
   );
 }
